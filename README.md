@@ -28,6 +28,9 @@ This toolkit is structured around a standard FAST data reduction and analysis wo
 * **`check_source.ipynb`**: An interactive tool for quickly scanning 1D spectra (`_spec.txt`) of hundreds of SoFiA-detected sources via a slider interface.
 * **`GAMA_search.ipynb` (Local GAMA Match)**: An automated high-speed cross-matching tool. It calculates HI redshift ($z_{HI}$) and matches candidates against the **local GAMA DR4 (Galaxy And Mass Assembly)** database using `search_around_sky` spatial indexing, enforcing a strict redshift tolerance ($\Delta z < 0.002$).
 
+### 6.Baseline Refinement
+* **`iterative_hifast_bld.py`**: Performs a non-destructive second-pass iterative baseline subtraction for HiFAST `sw_nobld.hdf5` products, dynamically protecting potential HI line channels during fitting and writing the cleaned results to a new output file.
+
 ## Installation & Dependencies
 
 Ensure you have the `hifast` pipeline installed. Then, install the required libraries:
@@ -64,6 +67,9 @@ pip install numpy scipy pandas h5py astropy matplotlib ipywidgets notebook
 * **`source.py`**: 读取 SoFiA 寻源结果目录，绘制空间分布散点图 (RA vs. Dec)。自动根据信噪比 (SNR) 调整点的大小，以颜色映射观测频率，并自动标注出信噪比最高的前 10 个候选源。
 * **`check_source.ipynb`**: 基于 `ipywidgets` 的交互式 Jupyter Notebook，用于快速浏览 SoFiA 生成的每一个源的 1D 频谱 (`_spec.txt`)。通过拖动滑动条即可无缝切换查看数百个源的积分通量，极大提升人工核查效率。
 * **`GAMA_search.ipynb`**: 自动化数据库交叉匹配工具。根据观测频率计算中性氢红移 ($z_{HI}$)，自动批量连接本地GAMA DR4 数据库。在指定的搜索半径和红移误差范围内寻找对应天体，并输出直观的匹配结果汇总表。
+
+### 6. 二次去基线
+* **`iterative_hifast_bld.py`**: 针对 HiFAST 的 `sw_nobld.hdf5` 中间产物执行非破坏性的二次迭代去基线，在拟合过程中动态保护可能的 HI 谱线通道，并将处理结果写入新的输出文件。
 
 ## 环境配置
 
